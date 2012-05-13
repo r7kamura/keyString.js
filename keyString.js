@@ -52,20 +52,3 @@ keyString.codeMap = {
   122: 'F11',
   123: 'F12'
 };
-
-/* Usage (with jQuery):
-*
-*  var keyConfig = {
-*      'M-1' : function () { ... },
-*      'M-2' : function () { ... },
-*      'M-3' : function () { ... },
-*      'M-4' : function () { ... },
-*      'M-0' : function () { ... },
-*      '.'   : function () { ... },
-*      'ESC' : function () { ... }
-*  };
-*  $(window).keydown(function (e) {
-*      (keyConfig[keyString(e)] || function() {})();
-*  });
-*
-*/
