@@ -1,20 +1,25 @@
 function keyString (e) {
-  var ret = '';
-  if (e.ctrlKey) ret += 'C-';
-  if (e.altKey)  ret += 'M-';
-  if (e.metaKey && !e.ctrlKey) ret += 'W-';
+  var key, ret = '';
+  if      (e.ctrlKey)  ret += 'C-';
+  if      (e.altKey)   ret += 'M-';
+  if      (e.shiftKey) ret += 'S-';
+  else if (e.metaKey)  ret += 'W-';
+
   if (e.which == 0) {
-    if (e.shiftKey) ret += 'S-';
     ret += arguments.callee.codeMap[e.keyCode];
   } else {
-    var key = arguments.callee.codeMap[e.which];
-    if (key) {
-      if (e.shiftKey) ret += 'S-';
+    if (key = arguments.callee.codeMap[e.which]) {
       ret += key;
     } else {
-      ret += String.fromCharCode(e.which)[e.shiftKey ? 'toUpperCase' : 'toLowerCase']();
+      if (e.shiftKey) {
+        ret = ret.replace(/^S-/, '');
+        ret += String.fromCharCode(e.which).toUpperCase();
+      } else {
+        ret += String.fromCharCode(e.which).toLowerCase();
+      }
     }
   }
+
   return ret;
 }
 
